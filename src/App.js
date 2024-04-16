@@ -5,6 +5,7 @@ import Buttons from './Buttons'
 function App() {
   return (
     <>
+      <h2>hacker news</h2>
     </>
   )
 }
