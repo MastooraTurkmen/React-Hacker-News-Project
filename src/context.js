@@ -36,11 +36,15 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  const removeStory = (id) => {
+    dispatch({ type: REMOVE_STORY, payload: id })
+  }
+
   useEffect(() => {
     fetchData(`${API_ENDPOINT}query=${state.query}&page=${state.page}`)
   }, [])
 
-  return <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>
+  return <AppContext.Provider value={{ ...state, removeStory }}>{children}</AppContext.Provider>
 }
 // make sure use
 export const useGlobalContext = () => {
