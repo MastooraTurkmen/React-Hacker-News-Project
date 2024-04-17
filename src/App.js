@@ -7,8 +7,8 @@ function App() {
   return (
     <>
       <SearchForm />
-      <Stories />
       <Buttons />
+      <Stories />
     </>
   )
 }
