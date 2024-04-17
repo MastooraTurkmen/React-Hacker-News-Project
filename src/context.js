@@ -11,13 +11,18 @@ import reducer from './reducer'
 
 const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?'
 
-const initialState = {}
+const initialState = {
+  isLoading: true,
+}
 
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  const fetchData = async (url) => {
+    dispatch({ type: SET_LOADING })
+  }
 
   return <AppContext.Provider value='hello'>{children}</AppContext.Provider>
 }
