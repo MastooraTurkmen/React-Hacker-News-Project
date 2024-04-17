@@ -40,7 +40,7 @@ const AppProvider = ({ children }) => {
     fetchData(`${API_ENDPOINT}query=${state.query}&page=${state.page}`)
   }, [])
 
-  return <AppContext.Provider value='hello'>{children}</AppContext.Provider>
+  return <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>
 }
 // make sure use
 export const useGlobalContext = () => {
