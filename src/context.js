@@ -13,6 +13,10 @@ const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?'
 
 const initialState = {
   isLoading: true,
+  hits: [],
+  query: 'react',
+  page: 0,
+  nbPages: 0,
 }
 
 const AppContext = React.createContext()
@@ -22,11 +26,19 @@ const AppProvider = ({ children }) => {
 
   const fetchData = async (url) => {
     dispatch({ type: SET_LOADING })
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      console.log(data);
+      dispatch({ type: SET_STORIES, payload: { hits: data.hits, query: data.query, nbPages: data.nbPages } })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
-    fetchData()
-  },[])
+    fetchData(`${API_ENDPOINT}`)
+  }, [])
 
   return <AppContext.Provider value='hello'>{children}</AppContext.Provider>
 }
