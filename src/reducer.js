@@ -15,32 +15,32 @@ const reducer = (state, action) => {
         ...state,
         isLoading: false,
         hits: action.payload.hits,
-        page: action.payload.page,
         nbPages: action.payload.nbPages,
       }
     case REMOVE_STORY:
       return {
-        ...state, hits: state.hits.filter((story) => story.objectID !== action.payload)
+        ...state,
+        hits: state.hits.filter((story) => story.objectID !== action.payload),
       }
     case HANDLE_SEARCH:
       return { ...state, query: action.payload, page: 0 }
     case HANDLE_PAGE:
       if (action.payload === 'inc') {
-        let nexPage = state.page + 1;
-        if (nexPage > state.nbPages - 1) {
-          nexPage = 0
+        let nextPage = state.page + 1
+        if (nextPage > state.nbPages - 1) {
+          nextPage = 0
         }
-        return { ...state, page: nexPage }
+        return { ...state, page: nextPage }
       }
       if (action.payload === 'dec') {
-        let prevPage = state.page - 1;
+        let prevPage = state.page - 1
         if (prevPage < 0) {
           prevPage = state.nbPages - 1
         }
         return { ...state, page: prevPage }
       }
     default:
-      throw new Error(`no matching "${action.type}" action type`)
+      throw new Error(`no mathching "${action.type}" action type`)
   }
 }
 export default reducer
