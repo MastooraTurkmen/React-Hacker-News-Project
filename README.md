@@ -2,6 +2,8 @@
 
 [React Hacker News Project](https://react-hackers-news-project.netlify.app/)
 
+#### Screenshots
+
 ![alt text](image.png)
 
 #### While Loading
